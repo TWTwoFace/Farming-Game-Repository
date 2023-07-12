@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Building : MonoBehaviour
 {
     [SerializeField] public Vector2Int Size = new Vector2Int();

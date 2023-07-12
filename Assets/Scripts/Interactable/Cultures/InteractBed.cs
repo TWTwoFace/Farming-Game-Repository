@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class InteractBed : MonoBehaviour
 {
@@ -18,9 +19,12 @@ public class InteractBed : MonoBehaviour
     {
         if (currentPrefab != null)
         {
-            if(currentPrefab.GetComponent<GrowingUp>().Growed == true)
+            if(currentPrefab.TryGetComponent<GrowingUp>(out GrowingUp o))
             {
-                Destroy(currentPrefab.gameObject);
+                if (o.Growed == true)
+                {
+                    Destroy(currentPrefab.gameObject);
+                }
             }
         }
     }
