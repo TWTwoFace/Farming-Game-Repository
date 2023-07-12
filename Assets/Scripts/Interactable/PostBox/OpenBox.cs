@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class OpenBox : MonoBehaviour
 {
-    private bool isOpen = false;
+    private bool IsOpen = false;
     private Animator anim;
 
     private void Start()
@@ -13,7 +13,7 @@ public class OpenBox : MonoBehaviour
 
     public void SwitchOpen()
     {
-        isOpen = !isOpen;
-        anim.SetBool("IsOpen", isOpen);
+        IsOpen = !IsOpen;
+        anim.SetBool(nameof(IsOpen), IsOpen);
     }
 }
