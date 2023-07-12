@@ -7,6 +7,7 @@ public class GrowingUp : MonoBehaviour
     [SerializeField] private float[] stagesTimes;
 
     public bool Growed;
+    public int stage;
 
     private void Start()
     {
@@ -34,13 +35,17 @@ public class GrowingUp : MonoBehaviour
     private IEnumerator Cout()
     {
         Component[] arr = GetComponentsInChildren(typeof(MeshRenderer));
-        Wait(stagesTimes[0], 0, tags, arr);
+
+        stage = 0;
+        Wait(stagesTimes[0], stage, tags, arr);
         yield return new WaitForSeconds(stagesTimes[0]);
-        Debug.Log("Stage1");
-        Wait(stagesTimes[1], 1, tags, arr);
+
+        stage = 1;
+        Wait(stagesTimes[1], stage, tags, arr);
         yield return new WaitForSeconds(stagesTimes[1]);
-        Debug.Log("Stage2");
-        Wait(stagesTimes[2], 2, tags, arr);
+
+        stage = 2;
+        Wait(stagesTimes[2], stage, tags, arr);
         Growed = true;
         yield break;
 

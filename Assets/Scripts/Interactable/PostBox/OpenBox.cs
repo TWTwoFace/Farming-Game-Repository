@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class OpenBox : MonoBehaviour
 {
     private bool isOpen = false;
