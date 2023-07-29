@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 5944386725441449119}
   - component: {fileID: 333354916856332778}
   - component: {fileID: 4301235194423141829}
-  - component: {fileID: 6192481144738651942}
   - component: {fileID: 3873710677697740845}
   - component: {fileID: -5519568081563660028}
   - component: {fileID: 6690248828852697988}
@@ -140,45 +139,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.026987, y: 0.62406147, z: 5.019159}
   m_Center: {x: 0.006778538, y: 0.1879699, z: 0.013335347}
---- !u!114 &6192481144738651942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6003891805324129968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c345ff98d133cff499d3990e4e4cf911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3873710677697740845}
-        m_TargetAssemblyTypeName: InteractBed, Assembly-CSharp
-        m_MethodName: PlaceCulture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3873710677697740845}
-        m_TargetAssemblyTypeName: InteractBed, Assembly-CSharp
-        m_MethodName: TakeCulture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3873710677697740845
 MonoBehaviour:
   m_ObjectHideFlags: 0

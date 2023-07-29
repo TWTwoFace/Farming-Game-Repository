@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8337171086527219261}
   - component: {fileID: 5175621881746569998}
   - component: {fileID: 6643265617916764961}
-  - component: {fileID: 4466883550260574518}
   - component: {fileID: 7653117487863258255}
   - component: {fileID: 437802000348626430}
   m_Layer: 6
@@ -69,33 +68,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4466883550260574518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6265979168503095574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c345ff98d133cff499d3990e4e4cf911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5175621881746569998}
-        m_TargetAssemblyTypeName: OpenBox, Assembly-CSharp
-        m_MethodName: SwitchOpen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &7653117487863258255
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,7 +76,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6265979168503095574}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 0.1}

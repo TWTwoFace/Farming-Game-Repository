@@ -12,7 +12,7 @@ public class PlayerInteraction : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.forward, out var hit, rayDistance, mask))
             {
                 GameObject obj = hit.collider.gameObject;
-                if (obj.TryGetComponent<Interactable>(out var o))
+                if (obj.TryGetComponent<IInteractable>(out var o))
                 {
                     o.Interact();
                 }

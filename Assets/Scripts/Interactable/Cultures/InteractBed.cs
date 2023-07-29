@@ -1,24 +1,28 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class InteractBed : MonoBehaviour
+public class InteractBed : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject CulturePrefab;
     private GameObject currentPrefab;
-
-    public void PlaceCulture()
+    public void Interact()
     {
         if (currentPrefab == null)
         {
-            currentPrefab = Instantiate(CulturePrefab, transform.position, transform.rotation);
-            currentPrefab.transform.SetParent(this.transform);
+            PlaceCulture();
+        }
+        else
+        {
+            TakeCulture();
         }
     }
-
-    public void TakeCulture()
+    private void PlaceCulture()
     {
-        if (currentPrefab != null)
-        {
+            currentPrefab = Instantiate(CulturePrefab, transform.position, transform.rotation);
+            currentPrefab.transform.SetParent(this.transform);
+    }
+
+    private void TakeCulture()
+    {
             if(currentPrefab.TryGetComponent<GrowingUp>(out GrowingUp o))
             {
                 if (o.Growed == true)
@@ -26,6 +30,5 @@ public class InteractBed : MonoBehaviour
                     Destroy(currentPrefab.gameObject);
                 }
             }
-        }
     }
 }
