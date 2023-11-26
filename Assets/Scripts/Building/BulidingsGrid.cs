@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class BulidingsGrid : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class BulidingsGrid : MonoBehaviour
     private Building flyingBuilding;
     private Camera mainCamera;
     private Color green;
-
+    private bool available;
+    int x;
+    int y;
     private void OnDrawGizmosSelected()
     {
         for (int x = 0; x < GridSize.x; x++)
@@ -60,23 +64,14 @@ public class BulidingsGrid : MonoBehaviour
                     flyingBuilding.GetComponentInChildren<MeshRenderer>().enabled = true;
                     flyingBuilding.MainRenderer.material.color = green;
                     Vector3 worldPos = ray.GetPoint(position);
-                    int x = Mathf.RoundToInt(worldPos.x);
-                    int y = Mathf.RoundToInt(worldPos.z);
+                    x = Mathf.RoundToInt(worldPos.x);
+                    y = Mathf.RoundToInt(worldPos.z);
                     flyingBuilding.transform.position = new Vector3(x, 0f, y);
-                    bool available = true;
+                    available = true;
 
                     if (x < 0 || x > GridSize.x - flyingBuilding.Size.x) available = false;
                     if (y < 0 || y > GridSize.y - flyingBuilding.Size.y) available = false;
                     if (available && isPlaceTaken(x, y)) available = false;
-
-                    if (Input.GetMouseButton(0) && available)
-                    {
-                        PlaceFlyingBuilding(x, y);
-                    }
-                    if (Input.GetMouseButton(1))
-                    {
-                        Destroy(flyingBuilding.gameObject);
-                    }
                 }
                 else
                 {
@@ -109,5 +104,24 @@ public class BulidingsGrid : MonoBehaviour
         }
         flyingBuilding.SetDefault();
         flyingBuilding = null;
+    }
+
+    public void OnPlaceField(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (available && flyingBuilding != null)
+            {
+                PlaceFlyingBuilding(x, y);
+            }
+        }
+    }
+
+    public void OnDestroyField(InputAction.CallbackContext context)
+    {
+        if (context.started && flyingBuilding != null)
+        {
+            Destroy(flyingBuilding.gameObject);
+        }
     }
 }

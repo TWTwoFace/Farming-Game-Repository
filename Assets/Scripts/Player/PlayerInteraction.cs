@@ -1,13 +1,14 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private LayerMask mask;
     [SerializeField] private float rayDistance = 2f;
 
-    private void Update()
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (context.started)
         {
             if (Physics.Raycast(transform.position, transform.forward, out var hit, rayDistance, mask))
             {

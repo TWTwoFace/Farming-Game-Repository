@@ -1,18 +1,16 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private CharacterController characterController;
 
-    private Vector3 moveDirection;
     private Vector3 velocity;
-
+    private Vector2 moveDirection = new Vector2(0, 0);
+    
     private void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        moveDirection = transform.right * x + transform.forward * y;
         if (characterController.isGrounded == false)
         {
             velocity.y += Physics.gravity.y * speed * Time.deltaTime;
@@ -21,7 +19,12 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = 0f;
         }
-        characterController.Move(moveDirection * speed * Time.deltaTime);
+        Vector3 direction = transform.right * moveDirection.x + transform.forward * moveDirection.y;
+        characterController.Move(new Vector3(direction.x, 0, direction.z) * speed * Time.deltaTime);
         characterController.Move(velocity * Time.deltaTime);
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveDirection = context.ReadValue<Vector2>();
     }
 }

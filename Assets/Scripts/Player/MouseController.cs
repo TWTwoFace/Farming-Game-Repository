@@ -1,11 +1,15 @@
 using UnityEngine;
 using System;
-
+using UnityEngine.InputSystem;
 public class MouseController : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
-    [SerializeField] public Transform player;
+    
+    [SerializeField, Range(0f, 200f)] private float mouseSensitivity = 1f;
+    [SerializeField, Range(0f, 400f)] private float gamepadSensitivity = 1f;
+    [SerializeField] private Transform player;
     private float xRotation = 0f;
+    private Vector2 deltaLook;
+    private bool isGamepad;
 
     private void Start()
     {
@@ -19,20 +23,30 @@ public class MouseController : MonoBehaviour
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             Cursor.lockState = CursorLockMode.Confined;
+            
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-        
     }
 
     private void Update()
     {
         if (Cursor.visible == false)
         {
-            float x = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            float y = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float x = deltaLook.x * Time.deltaTime;
+            float y = deltaLook.y * Time.deltaTime;
+            if (isGamepad)
+            {
+                x = x * gamepadSensitivity;
+                y = y * gamepadSensitivity;
+            }
+            else
+            {
+                x = x * mouseSensitivity;
+                y = y * mouseSensitivity;
+            }
             xRotation -= y;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -41,6 +55,19 @@ public class MouseController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ToggleCursorMode();
+        }
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        deltaLook = context.ReadValue<Vector2>();
+        if(context.control.device is Gamepad)
+        {
+            isGamepad = true;
+        }
+        else
+        {
+            isGamepad = false;
         }
     }
 }
